@@ -1,4 +1,6 @@
+import 'package:desserts_app/custom_button.dart';
 import 'package:desserts_app/data.dart';
+import 'package:desserts_app/screens/components/home_bottom_section.dart';
 import 'package:desserts_app/screens/components/home_header.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +34,21 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            HomeHeader(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20),
+                HomeHeader(),
+              ],
+            ),
+          ),
+          HomeBottomSection(),
+        ],
       ),
     );
   }
-
-
 }
