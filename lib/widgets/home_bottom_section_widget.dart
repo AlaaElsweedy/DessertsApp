@@ -2,10 +2,11 @@ import 'package:desserts_app/custom_button.dart';
 import 'package:desserts_app/data.dart';
 import 'package:flutter/material.dart';
 
-class HomeBottomSection extends StatelessWidget {
+class HomeBottomSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double bottomSectionHeight = 100.0;
+
     return Positioned(
       bottom: 0,
       left: 0,
@@ -33,7 +34,7 @@ class HomeBottomSection extends StatelessWidget {
               height: 60,
               width: double.infinity,
               child: Text(
-                'Selected 2 Items',
+                'Selected Items',
                 style: TextStyle(color: Colors.white),
               ),
               gradient: LinearGradient(

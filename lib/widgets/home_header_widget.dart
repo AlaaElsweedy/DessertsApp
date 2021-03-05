@@ -1,12 +1,12 @@
 import 'package:desserts_app/data.dart';
 import 'package:flutter/material.dart';
 
-class HomeHeader extends StatefulWidget {
+class HomeHeaderWidget extends StatefulWidget {
   @override
-  _HomeHeaderState createState() => _HomeHeaderState();
+  _HomeHeaderWidgetState createState() => _HomeHeaderWidgetState();
 }
 
-class _HomeHeaderState extends State<HomeHeader> {
+class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   int currentIndex = 0;
   final List<String> categories = [
     'Fruit',
