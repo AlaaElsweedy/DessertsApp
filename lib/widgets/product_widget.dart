@@ -1,5 +1,5 @@
 import 'package:desserts_app/data.dart';
-import 'package:desserts_app/models/product.dart';
+import 'package:desserts_app/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +9,8 @@ class ProductWidget extends StatefulWidget {
 }
 
 class _ProductWidgetState extends State<ProductWidget> {
+  int quantity = 0;
+
   @override
   Widget build(BuildContext context) {
     final item = Provider.of<Product>(context);
@@ -55,31 +57,37 @@ class _ProductWidgetState extends State<ProductWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           buildRaisedButton(
-                            icon: Icon(Icons.remove, color: Colors.white,),
+                            icon: Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                            ),
                             onPressed: () {
                               setState(() {
-                                if(item.quantity <= 0){
-                                  item.quantity = 0;
+                                if (quantity <= 0) {
+                                  quantity = 0;
                                 } else {
                                   setState(() {
-                                    item.quantity --;
+                                    quantity --;
                                   });
                                 }
                               });
                             },
                           ),
                           Text(
-                            '${item.quantity}',
+                            '$quantity',
                             style: TextStyle(
                               color: primaryColor,
                               fontSize: 20,
                             ),
                           ),
                           buildRaisedButton(
-                            icon: Icon(Icons.add, color: Colors.white,),
+                            icon: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
                             onPressed: () {
                               setState(() {
-                                item.quantity ++;
+                                quantity ++;
                               });
                             },
                           ),

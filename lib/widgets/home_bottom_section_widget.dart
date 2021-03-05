@@ -33,9 +33,23 @@ class HomeBottomSectionWidget extends StatelessWidget {
             child: CustomButton(
               height: 60,
               width: double.infinity,
-              child: Text(
-                'Selected Items',
-                style: TextStyle(color: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Add To Cart',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 80),
+                  Icon(
+                    Icons.arrow_forward_outlined,
+                    color: Colors.white,
+                  ),
+                ],
               ),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
