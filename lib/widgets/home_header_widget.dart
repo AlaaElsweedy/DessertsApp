@@ -8,7 +8,7 @@ class HomeHeaderWidget extends StatefulWidget {
 
 class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   int currentIndex = 0;
-  final List<String> categories = [
+  final List<String> categories = const [
     'Fruit',
     'With milk',
     'With nuts',
@@ -52,7 +52,7 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
         });
       },
       child: Container(
-        margin: EdgeInsets.only(right: 8),
+        margin: const EdgeInsets.only(right: 8),
         alignment: Alignment.center,
         width: 80,
         decoration: BoxDecoration(

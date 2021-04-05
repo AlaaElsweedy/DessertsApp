@@ -1,22 +1,15 @@
+import 'package:desserts_app/data.dart';
+import 'package:desserts_app/provider/product.dart';
 import 'package:desserts_app/widgets/home_bottom_section_widget.dart';
 import 'package:desserts_app/widgets/home_header_widget.dart';
 import 'package:desserts_app/widgets/product_widget.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:desserts_app/provider/product_provider.dart';
-import 'package:desserts_app/data.dart';
-
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<ProductProvider>(context).products;
+    final products = Provider.of<ListProduct>(context).products;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -47,11 +40,11 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 HomeHeaderWidget(),
                 Expanded(
                   child: ListView.builder(
-                    padding: EdgeInsets.only(top: 80, bottom: 120),
+                    padding: const EdgeInsets.only(top: 80, bottom: 120),
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       return ChangeNotifierProvider.value(

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class HomeBottomSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double bottomSectionHeight = 100.0;
+    const double _bottomSectionHeight = 100.0;
 
     return Positioned(
       bottom: 0,
       left: 0,
       right: 0,
-      height: bottomSectionHeight,
+      height: _bottomSectionHeight,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -44,7 +44,7 @@ class HomeBottomSectionWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 80),
+                  const SizedBox(width: 80),
                   Icon(
                     Icons.arrow_forward_outlined,
                     color: Colors.white,

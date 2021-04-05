@@ -1,6 +1,6 @@
-import 'package:desserts_app/data.dart';
-import 'package:desserts_app/provider/product_provider.dart';
-import 'package:desserts_app/screens/home_page.dart';
+import 'package:desserts_app/provider/product.dart';
+import 'package:desserts_app/screens/detail_screen.dart';
+import 'package:desserts_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,11 +11,22 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: ProductProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: ListProduct(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ListProduct(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Raleway'),
         home: HomePage(),
+        routes: {
+          DetailScreen.routeName: (context) => DetailScreen(),
+        },
       ),
     );
   }
