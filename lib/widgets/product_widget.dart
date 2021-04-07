@@ -33,9 +33,12 @@ class ProductWidget extends StatelessWidget {
                       DetailScreen.routeName,
                       arguments: item.id,
                     ),
-                    child: Image.asset(
-                      item.image,
-                      fit: BoxFit.contain,
+                    child: Hero(
+                      tag: item.title,
+                      child: Image.asset(
+                        item.image,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),

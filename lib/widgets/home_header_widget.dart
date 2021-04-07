@@ -1,5 +1,6 @@
 import 'package:desserts_app/data.dart';
 import 'package:desserts_app/providers/categories_provider.dart';
+import 'package:desserts_app/widgets/category_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ class HomeHeaderWidget extends StatefulWidget {
 
 class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final categories = Provider.of<CategoryList>(context).categories;
@@ -35,6 +37,7 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
             itemBuilder: (context, index) => buildCategory(
               index,
               categories[index].title,
+              categories[index].id,
             ),
           ),
         ),
@@ -42,12 +45,16 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
     );
   }
 
-  Widget buildCategory(int index, String title) {
+  Widget buildCategory(int index, String title, String id) {
     return GestureDetector(
       onTap: () {
         setState(() {
           currentIndex = index;
         });
+        Navigator.of(context).pushNamed(
+          CategoryDetail.routeName,
+          arguments: id,
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(right: 8),

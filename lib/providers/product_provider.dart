@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class Product with ChangeNotifier {
   final String id;
+  final List<String> categoryIds;
   final String title;
   final String ingredients;
   final String image;
@@ -11,6 +12,7 @@ class Product with ChangeNotifier {
 
   Product({
     @required this.id,
+    this.categoryIds,
     @required this.title,
     @required this.ingredients,
     @required this.image,
@@ -43,6 +45,11 @@ class ListProduct with ChangeNotifier {
   final List<Product> _products = [
     Product(
       id: 'p1',
+      categoryIds: [
+        'chocolate',
+        'fruit',
+        'with milk',
+      ],
       title: 'Chocolate Cake',
       ingredients:
           'Flour, Sugar, Eggs, Butter or Oil or Margarine, A liquid and a leavening agent such as baking soda or baking powder. Common additional ingredients and flavourings include dried, candied or fresh fruit, nuts, cocoa and extracts such as vanilla with numerous substitutions for the primary ingredients',
@@ -51,6 +58,11 @@ class ListProduct with ChangeNotifier {
     ),
     Product(
       id: 'p2',
+      categoryIds: [
+        'fruit',
+        'with milk',
+        'with nuts',
+      ],
       title: 'Sweet Holiday',
       ingredients:
           'Flour, Sugar, Eggs, Butter or Oil or Margarine, A liquid and a leavening agent such as baking soda or baking powder. Common additional ingredients and flavourings include dried, candied or fresh fruit, nuts, cocoa and extracts such as vanilla with numerous substitutions for the primary ingredients',
@@ -59,6 +71,10 @@ class ListProduct with ChangeNotifier {
     ),
     Product(
       id: 'p3',
+      categoryIds: [
+        'fruit',
+        'with milk',
+      ],
       title: 'Strawberry Pie',
       ingredients:
           'Flour, Sugar, Eggs, Butter or Oil or Margarine, A liquid and a leavening agent such as baking soda or baking powder. Common additional ingredients and flavourings include dried, candied or fresh fruit, nuts, cocoa and extracts such as vanilla with numerous substitutions for the primary ingredients',
@@ -67,6 +83,12 @@ class ListProduct with ChangeNotifier {
     ),
     Product(
       id: 'p4',
+      categoryIds: [
+        'with milk',
+        'with nuts',
+        'chocolate',
+        'biscuit',
+      ],
       title: 'Oreo Cake',
       ingredients:
           'Flour, Sugar, Eggs, Butter or Oil or Margarine, A liquid and a leavening agent such as baking soda or baking powder. Common additional ingredients and flavourings include dried, candied or fresh fruit, nuts, cocoa and extracts such as vanilla with numerous substitutions for the primary ingredients',

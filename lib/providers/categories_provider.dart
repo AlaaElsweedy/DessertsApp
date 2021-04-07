@@ -17,4 +17,8 @@ class CategoryList with ChangeNotifier {
   ];
 
   List<Categories> get categories => _categories;
+
+  Categories findById(String id) {
+    return _categories.firstWhere((element) => element.id == id);
+  }
 }

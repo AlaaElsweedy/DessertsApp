@@ -1,6 +1,8 @@
+import 'package:desserts_app/providers/categories_provider.dart';
 import 'package:desserts_app/providers/product_provider.dart';
 import 'package:desserts_app/screens/detail_screen.dart';
 import 'package:desserts_app/screens/home_screen.dart';
+import 'package:desserts_app/widgets/category_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +18,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: ListProduct(),
         ),
+        ChangeNotifierProvider.value(
+          value: CategoryList(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -23,6 +28,7 @@ class MyApp extends StatelessWidget {
         home: HomePage(),
         routes: {
           DetailScreen.routeName: (context) => DetailScreen(),
+          CategoryDetail.routeName: (context) => CategoryDetail(),
         },
       ),
     );
