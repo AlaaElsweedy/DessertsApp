@@ -1,5 +1,5 @@
 import 'package:desserts_app/data.dart';
-import 'package:desserts_app/provider/product.dart';
+import 'package:desserts_app/providers/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,9 +45,12 @@ class DetailScreen extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: Image.asset(
-                        product.image,
-                        height: headerHeight * 0.6,
+                      child: Hero(
+                        tag: product.title,
+                        child: Image.asset(
+                          product.image,
+                          height: headerHeight * 0.6,
+                        ),
                       ),
                     ),
                   ],
@@ -87,18 +90,11 @@ class DetailScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: secondaryColor, width: 2),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.favorite_border_sharp,
-                                color: secondaryColor,
-                              ),
-                              onPressed: () {},
+                          Text(
+                            '\$${product.price}',
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],

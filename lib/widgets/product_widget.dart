@@ -1,5 +1,5 @@
 import 'package:desserts_app/data.dart';
-import 'package:desserts_app/provider/product.dart';
+import 'package:desserts_app/providers/product_provider.dart';
 import 'package:desserts_app/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,105 +8,121 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = Provider.of<Product>(context);
-    return Stack(
-      children: [
-        Container(
-          alignment: Alignment.topRight,
-          margin: EdgeInsets.only(bottom: 50),
-          height: 140,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(245, 245, 245, 1),
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(right: 20, top: 20),
-            child: Container(
-              width: 155,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.title,
-                    softWrap: true,
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+    return Container(
+      margin: EdgeInsets.only(bottom: 50),
+      padding: EdgeInsets.only(right: 22),
+      height: 150,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(245, 245, 245, 1),
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                color: Colors.transparent,
+                height: 120,
+                width: 140,
+                child: Transform.translate(
+                  offset: Offset(25, -35),
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(
+                      DetailScreen.routeName,
+                      arguments: item.id,
+                    ),
+                    child: Image.asset(
+                      item.image,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                  SizedBox(height: 10),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      item.title,
+                      softWrap: true,
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
                   Text(
                     '\$ ${item.price}',
                     style: TextStyle(
                       color: primaryColor,
-                      fontSize: 17,
+                      fontSize: 18,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          buildRaisedButton(
-                            icon: Icon(
-                              Icons.remove,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              item.decrementQuantity();
-                            },
+                  Transform.translate(
+                    offset: Offset(0, 30),
+                    child: Row(
+                      children: [
+                        buildRaisedButton(
+                          icon: Icon(
+                            Icons.remove,
+                            color: Colors.white,
                           ),
-                          Text(
-                            '${item.quantity}',
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 20,
-                            ),
+                          onPressed: () {
+                            item.decrementQuantity();
+                          },
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          '${item.quantity}',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 20,
                           ),
-                          buildRaisedButton(
-                            icon: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              item.incrementQuantity();
-                            },
+                        ),
+                        const SizedBox(width: 10),
+                        buildRaisedButton(
+                          icon: Icon(
+                            Icons.add,
+                            color: Colors.white,
                           ),
-                        ],
-                      ),
+                          onPressed: () {
+                            item.incrementQuantity();
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
+            ],
+          ),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(
+                    item.isFavorite ? Icons.favorite : Icons.favorite_border,
+                    size: 35,
+                  ),
+                  onPressed: () {
+                    item.toggleFavoriteStatus();
+                  },
+                ),
+                Row(
+                  children: [],
+                ),
+              ],
             ),
           ),
-        ),
-
-        //-------------- Image ---------------
-        GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(
-            DetailScreen.routeName,
-            arguments: item.id,
-          ),
-          child: Container(
-            color: Colors.transparent,
-            height: 120,
-            width: 140,
-            child: Transform.translate(
-              offset: Offset(25, -35),
-              child: Image.asset(
-                item.image,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-        ),
-        //------------------ End of Image ---------------
-      ],
+        ],
+      ),
     );
   }
 

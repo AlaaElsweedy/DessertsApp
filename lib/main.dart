@@ -1,4 +1,4 @@
-import 'package:desserts_app/provider/product.dart';
+import 'package:desserts_app/providers/product_provider.dart';
 import 'package:desserts_app/screens/detail_screen.dart';
 import 'package:desserts_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: ListProduct(),
         ),
-        ChangeNotifierProvider.value(
-          value: ListProduct(),
-        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,5 +1,7 @@
 import 'package:desserts_app/data.dart';
+import 'package:desserts_app/providers/categories_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeHeaderWidget extends StatefulWidget {
   @override
@@ -8,16 +10,9 @@ class HomeHeaderWidget extends StatefulWidget {
 
 class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
   int currentIndex = 0;
-  final List<String> categories = const [
-    'Fruit',
-    'With milk',
-    'With nuts',
-    'Chocolate',
-    'Biscuit ',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final categories = Provider.of<CategoryList>(context).categories;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,14 +32,17 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
-            itemBuilder: (context, index) => buildCategory(index),
+            itemBuilder: (context, index) => buildCategory(
+              index,
+              categories[index].title,
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget buildCategory(int index) {
+  Widget buildCategory(int index, String title) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -61,7 +59,7 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
           border: Border.all(color: primaryColor),
         ),
         child: Text(
-          categories[index],
+          title,
           style: TextStyle(
             color: currentIndex == index ? Colors.white : primaryColor,
           ),

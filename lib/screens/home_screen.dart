@@ -1,5 +1,6 @@
 import 'package:desserts_app/data.dart';
-import 'package:desserts_app/provider/product.dart';
+import 'package:desserts_app/providers/categories_provider.dart';
+import 'package:desserts_app/providers/product_provider.dart';
 import 'package:desserts_app/widgets/home_bottom_section_widget.dart';
 import 'package:desserts_app/widgets/home_header_widget.dart';
 import 'package:desserts_app/widgets/product_widget.dart';
@@ -41,7 +42,10 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                HomeHeaderWidget(),
+                ChangeNotifierProvider.value(
+                  value: CategoryList(),
+                  child: HomeHeaderWidget(),
+                ),
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.only(top: 80, bottom: 120),
