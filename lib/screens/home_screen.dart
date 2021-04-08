@@ -1,9 +1,11 @@
 import 'package:desserts_app/data.dart';
+import 'package:desserts_app/providers/cart_provider.dart';
 import 'package:desserts_app/providers/categories_provider.dart';
 import 'package:desserts_app/providers/product_provider.dart';
-import 'package:desserts_app/widgets/home_bottom_section_widget.dart';
+import 'package:desserts_app/screens/cart_screen.dart';
+import 'package:desserts_app/widgets/badge.dart';
 import 'package:desserts_app/widgets/home_header_widget.dart';
-import 'package:desserts_app/widgets/main_widget.dart';
+import 'package:desserts_app/widgets/main_drawer.dart';
 import 'package:desserts_app/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,10 +14,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<ListProduct>(context).products;
-
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: MainWidget(),
+      drawer: MainDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: primaryColor,
@@ -23,12 +24,22 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.search,
+          Consumer<Cart>(
+            builder: (context, cart, child) => Badge(
               color: primaryColor,
+              value: cart.itemCount.toString(),
+              child: child,
             ),
-            onPressed: () {},
+            child: IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: primaryColor,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+            ),
           ),
         ],
       ),
@@ -46,7 +57,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.only(top: 80, bottom: 120),
+                    padding: const EdgeInsets.only(top: 80, bottom: 20),
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       return ChangeNotifierProvider.value(
@@ -59,7 +70,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          HomeBottomSectionWidget(),
+          // HomeBottomSectionWidget(),
         ],
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:desserts_app/data.dart';
 import 'package:desserts_app/providers/product_provider.dart';
-import 'package:desserts_app/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +8,7 @@ class FavouritesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteProduct = Provider.of<ListProduct>(context);
+    final favoriteProduct = Provider.of<ListProduct>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -38,10 +37,7 @@ class FavouritesWidget extends StatelessWidget {
                 trailing: ElevatedButton(
                   child: Text('Add to cart'),
                   style: ElevatedButton.styleFrom(primary: primaryColor),
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushReplacementNamed(CartScreen.routeName);
-                  },
+                  onPressed: () {},
                 ),
               ),
             );

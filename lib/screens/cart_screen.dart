@@ -8,7 +8,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context);
+    final cart = Provider.of<Cart>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Cart'),
@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                       labelStyle: TextStyle(color: Colors.white),
                       backgroundColor: primaryColor,
                       label: Text(
-                        '\$${500}',
+                        '\$${cart.totalPrice}',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),

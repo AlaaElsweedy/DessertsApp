@@ -19,14 +19,37 @@ class CategoryDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
+        title: const Text('WishList'),
       ),
-      body: ListView.builder(
-        itemCount: product.length,
-        itemBuilder: (context, index) {
-          return Center(
-            child: Text(product[index].title.toString()),
-          );
-        },
+      body: Container(
+        child: ListView.builder(
+          itemCount: product.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListTile(
+                leading: Container(
+                  width: 100,
+                  child: Image.asset(
+                    product[index].image,
+                    fit: BoxFit.fill,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                title: Text(
+                  product[index].title.toString(),
+                ),
+                trailing: ElevatedButton(
+                  child: Text('Add to cart'),
+                  style: ElevatedButton.styleFrom(primary: primaryColor),
+                  onPressed: () {},
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

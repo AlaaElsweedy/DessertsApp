@@ -2,7 +2,7 @@ import 'package:desserts_app/data.dart';
 import 'package:desserts_app/widgets/favourits_widget.dart';
 import 'package:flutter/material.dart';
 
-class MainWidget extends StatelessWidget {
+class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(

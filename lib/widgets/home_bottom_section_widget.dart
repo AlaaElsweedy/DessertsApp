@@ -1,11 +1,14 @@
 import 'package:desserts_app/custom_button.dart';
 import 'package:desserts_app/data.dart';
+import 'package:desserts_app/providers/cart_provider.dart';
 import 'package:desserts_app/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeBottomSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     const double _bottomSectionHeight = 100.0;
     return Positioned(
       bottom: 0,
@@ -37,7 +40,7 @@ class HomeBottomSectionWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Add To Cart',
+                    'Go To Cart',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
