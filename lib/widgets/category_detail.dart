@@ -10,7 +10,8 @@ class CategoryDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routeId = ModalRoute.of(context).settings.arguments as String;
-    final category = Provider.of<CategoryList>(context).findById(routeId);
+    final category =
+        Provider.of<CategoryList>(context, listen: false).findById(routeId);
     final product = ListProduct()
         .products
         .where((product) => product.categoryIds.contains(category.id))

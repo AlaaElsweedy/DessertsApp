@@ -17,22 +17,22 @@ class ProductWidget extends StatelessWidget {
         color: Color.fromRGBO(245, 245, 245, 1),
         borderRadius: BorderRadius.circular(50),
       ),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
             children: [
               Container(
                 color: Colors.transparent,
                 height: 120,
                 width: 140,
-                child: Transform.translate(
-                  offset: Offset(25, -35),
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(
-                      DetailScreen.routeName,
-                      arguments: item.id,
-                    ),
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed(
+                    DetailScreen.routeName,
+                    arguments: item.id,
+                  ),
+                  child: Transform.translate(
+                    offset: Offset(25, -35),
                     child: Hero(
                       tag: item.title,
                       child: Image.asset(
@@ -43,83 +43,75 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      item.title,
-                      softWrap: true,
-                      style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+              Expanded(
+                child: Transform.translate(
+                  offset: Offset(-25, 0),
+                  child: IconButton(
+                    icon: Icon(
+                      item.isFavorite ? Icons.favorite : Icons.favorite_border,
+                      size: 35,
                     ),
+                    onPressed: () {
+                      item.toggleFavoriteStatus();
+                    },
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    '\$ ${item.price}',
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: Offset(0, 30),
-                    child: Row(
-                      children: [
-                        buildRaisedButton(
-                          icon: Icon(
-                            Icons.remove,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            item.decrementQuantity();
-                          },
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          '${item.quantity}',
-                          style: TextStyle(
-                            color: primaryColor,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        buildRaisedButton(
-                          icon: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            item.incrementQuantity();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
-          Expanded(
-            child: Row(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  icon: Icon(
-                    item.isFavorite ? Icons.favorite : Icons.favorite_border,
-                    size: 35,
+                Text(
+                  item.title,
+                  softWrap: true,
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  onPressed: () {
-                    item.toggleFavoriteStatus();
-                  },
+                ),
+                Text(
+                  '\$ ${item.price}',
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 Row(
-                  children: [],
+                  children: [
+                    buildRaisedButton(
+                      icon: Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        item.decrementQuantity();
+                      },
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      '${item.quantity}',
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    buildRaisedButton(
+                      icon: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        item.incrementQuantity();
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -133,6 +125,7 @@ class ProductWidget extends StatelessWidget {
     return SizedBox(
       height: 40,
       width: 40,
+      // ignore: deprecated_member_use
       child: RaisedButton(
         color: primaryColor,
         padding: EdgeInsets.all(8),

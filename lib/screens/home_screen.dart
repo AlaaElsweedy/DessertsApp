@@ -3,6 +3,7 @@ import 'package:desserts_app/providers/categories_provider.dart';
 import 'package:desserts_app/providers/product_provider.dart';
 import 'package:desserts_app/widgets/home_bottom_section_widget.dart';
 import 'package:desserts_app/widgets/home_header_widget.dart';
+import 'package:desserts_app/widgets/main_widget.dart';
 import 'package:desserts_app/widgets/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,16 +15,13 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      drawer: MainWidget(),
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: primaryColor,
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.menu,
-            color: primaryColor,
-          ),
-          onPressed: () {},
-        ),
         actions: [
           IconButton(
             icon: Icon(
