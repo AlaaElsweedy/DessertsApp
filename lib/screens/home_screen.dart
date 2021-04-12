@@ -70,7 +70,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          // HomeBottomSectionWidget(),
         ],
       ),
     );

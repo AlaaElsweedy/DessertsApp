@@ -1,4 +1,5 @@
 import 'package:desserts_app/data.dart';
+import 'package:desserts_app/providers/cart_provider.dart';
 import 'package:desserts_app/providers/categories_provider.dart';
 import 'package:desserts_app/providers/product_provider.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,15 @@ class CategoryDetail extends StatelessWidget {
                 trailing: ElevatedButton(
                   child: Text('Add to cart'),
                   style: ElevatedButton.styleFrom(primary: primaryColor),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<Cart>(context, listen: false).addItem(
+                      product[index].id,
+                      product[index].title,
+                      product[index].image,
+                      product[index].price,
+                      product[index].quantity,
+                    );
+                  },
                 ),
               ),
             );

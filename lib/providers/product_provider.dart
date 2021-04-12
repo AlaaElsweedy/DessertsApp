@@ -17,7 +17,7 @@ class Product with ChangeNotifier {
     @required this.ingredients,
     @required this.image,
     @required this.price,
-    this.quantity = 0,
+    this.quantity = 1,
     this.isFavorite = false,
   });
 
@@ -27,8 +27,8 @@ class Product with ChangeNotifier {
   }
 
   decrementQuantity() {
-    if (quantity <= 0) {
-      quantity = 0;
+    if (quantity <= 1) {
+      quantity = 1;
     } else {
       quantity--;
     }

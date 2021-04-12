@@ -14,12 +14,13 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final categories = Provider.of<CategoryList>(context).categories;
+    final categories =
+        Provider.of<CategoryList>(context, listen: false).categories;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          child: Text(
+          child: const Text(
             'Desserts',
             style: TextStyle(
               color: primaryColor,

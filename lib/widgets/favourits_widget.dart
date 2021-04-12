@@ -1,4 +1,5 @@
 import 'package:desserts_app/data.dart';
+import 'package:desserts_app/providers/cart_provider.dart';
 import 'package:desserts_app/providers/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,15 @@ class FavouritesWidget extends StatelessWidget {
                 trailing: ElevatedButton(
                   child: Text('Add to cart'),
                   style: ElevatedButton.styleFrom(primary: primaryColor),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<Cart>(context, listen: false).addItem(
+                      favoriteProduct.showFavoritesOnly[index].id,
+                      favoriteProduct.showFavoritesOnly[index].title,
+                      favoriteProduct.showFavoritesOnly[index].image,
+                      favoriteProduct.showFavoritesOnly[index].price,
+                      favoriteProduct.showFavoritesOnly[index].quantity,
+                    );
+                  },
                 ),
               ),
             );
