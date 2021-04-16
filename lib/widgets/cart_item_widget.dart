@@ -1,3 +1,4 @@
+import 'package:desserts_app/data.dart';
 import 'package:desserts_app/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,34 @@ class CartItemWidget extends StatelessWidget {
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         Provider.of<Cart>(context, listen: false).removeItem(productId);
+      },
+      confirmDismiss: (direction) {
+        return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Are you sure?'),
+            content: Text('Do you want to remove this item from the cart?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: Text(
+                  'NO',
+                  style: TextStyle(color: primaryColor),
+                ),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text(
+                    'Yes',
+                    style: TextStyle(color: primaryColor),
+                  )),
+            ],
+          ),
+        );
       },
       child: Card(
         margin: EdgeInsets.symmetric(

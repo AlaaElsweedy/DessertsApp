@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
-  static final String routeName = '/detail-screen';
+  static const String routeName = '/detail-screen';
 
   @override
   _DetailScreenState createState() => _DetailScreenState();

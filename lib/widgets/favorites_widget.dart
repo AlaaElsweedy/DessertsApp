@@ -1,6 +1,7 @@
 import 'package:desserts_app/data.dart';
 import 'package:desserts_app/providers/cart_provider.dart';
 import 'package:desserts_app/providers/product_provider.dart';
+import 'package:desserts_app/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ class FavouritesWidget extends StatelessWidget {
         backgroundColor: primaryColor,
         title: const Text('WishList'),
       ),
+      drawer: MainDrawer(),
       body: Container(
         child: ListView.builder(
           itemCount: favoriteProduct.showFavoritesOnly.length,
@@ -44,7 +46,7 @@ class FavouritesWidget extends StatelessWidget {
                       favoriteProduct.showFavoritesOnly[index].title,
                       favoriteProduct.showFavoritesOnly[index].image,
                       favoriteProduct.showFavoritesOnly[index].price,
-                      favoriteProduct.showFavoritesOnly[index].quantity,
+                      favoriteProduct.showFavoritesOnly[index].quantity = 1,
                     );
                   },
                 ),

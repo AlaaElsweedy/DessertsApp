@@ -1,6 +1,7 @@
 import 'package:desserts_app/custom_button.dart';
 import 'package:desserts_app/data.dart';
 import 'package:desserts_app/providers/cart_provider.dart';
+import 'package:desserts_app/providers/orders_provider.dart';
 import 'package:desserts_app/widgets/cart_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -88,7 +89,15 @@ class CartScreen extends StatelessWidget {
                     end: Alignment.bottomRight,
                     colors: [primaryColor, secondaryColor],
                   ),
-                  onPressed: cart.totalPrice == 0.0 ? null : () {},
+                  onPressed: cart.totalPrice == 0.0
+                      ? null
+                      : () {
+                          Provider.of<Orders>(context, listen: false).addOrder(
+                            cart.items.values.toList(),
+                            cart.totalPrice,
+                          );
+                          cart.clear();
+                        },
                 ),
               ),
             ],

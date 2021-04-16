@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
               icon: Icon(
                 Icons.shopping_cart,
                 color: primaryColor,
-                size: 30,
+                size: 28,
               ),
               onPressed: () {
                 Navigator.of(context).pushNamed(CartScreen.routeName);
