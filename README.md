@@ -4,5 +4,5 @@ A new Flutter application.
 
 ## Getting Started
 
-![](screenShots/image1.png),
-![](screenShots/image2.png)
+!<img src="screenShots/images1.png" width="200" height="500">,
+<img src="screenShots/image2.png" width="200" height="500">
